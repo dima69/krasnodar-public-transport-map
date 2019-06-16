@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Krasnodar transport live map</title>
+    <link rel="stylesheet" href="{% static 'live_map/style.css' %}">
+    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+{#    <div id="map"></div>#}
+    <div id="app">
+        <li v-for="item in vehicles_pos">
+            <p>${ item.vehicle_id }$</p>
+            <p>${ item.route }$</p>
+        </li>
+    </div>
+    <script>
+        var app = new Vue({
+            delimiters: ['${', '}$'],
+            el: '#app',
+            data: {
+                message: 'asdasd',
+                vehicles_pos: []
+            },
+            http: {
+                root: 'http://127.0.0.1:8000'
+            }
+        });
+
+        // const axios = require('axios');
+        // this.vehicles = response.data;
+        axios.get('/api/vehicles/').then(function (response) {
+                // handle success
+                this.vehicles_pos = response;
+                console.log(response.data);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+            });
+    </script>
+</body>
+</html>
