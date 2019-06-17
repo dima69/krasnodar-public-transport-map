@@ -25,7 +25,7 @@ SECRET_KEY = 'we&mqamqif@+r%&=54r1=w5ku^0*t+g3nzxu5v0(bevvh$*30s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['krdmap.ddns.net']
 
 
 # Application definition
