@@ -8,7 +8,7 @@ OpenStreetMap_Mapnik_Layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-function getGpsDataVanilla() {
+function getGpsData() {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", "/api/vehicles/?fields=bus,tram,trolley&format=json");
     xhr.send();
@@ -17,20 +17,13 @@ function getGpsDataVanilla() {
             console.log(`Error ${xhr.status}: ${xhr.statusText}`);
         } else {
             var jsonResponse = JSON.parse(xhr.responseText);
-            drawMarkersOnMapNew(jsonResponse);
+            drawMarkersOnMap(jsonResponse);
         }
     };
 }
 
 // @@@ veh_type, route_number, speed
 function drawCustomIcon(vehicle_type, route_number) {
-    // if (vehicle_type === "bus") {
-    //     classVehicleType = "bus-icon";
-    // } else if (vehicle_type === "tram") {
-    //     classVehicleType = "tram-icon";
-    // } else {
-    //     classVehicleType = "trolley-icon";
-    // }
     switch (vehicle_type) {
         case "bus":
             classVehicleType = "bus-icon";
@@ -51,7 +44,7 @@ function drawCustomIcon(vehicle_type, route_number) {
 
 var markerslayer = L.layerGroup();
 var markers_coords = [];
-function drawMarkersOnMapNew(vehicles) {
+function drawMarkersOnMap(vehicles) {
     for (let type of Object.keys(vehicles)) {
         for (let route in vehicles[type]) {
             for (let item in vehicles[type][route]) {
@@ -64,8 +57,7 @@ function drawMarkersOnMapNew(vehicles) {
             }
         }
     }
-    // markers_coords.addTo(markerslayer);
     markerslayer.addTo(map);
 }
 
-getGpsDataVanilla();
+getGpsData();
