@@ -1,14 +1,17 @@
-from live_map import views
-from rest_framework import routers
-from rest_framework.documentation import include_docs_urls
-from django.urls import path, include
+from django.urls import path
 
-
-router = routers.DefaultRouter()
-router.register(r'vehicles', views.VehicleView)
+from live_map.views import index_gis, index_leaflet
+from live_map.api.views import VehicleList
 
 urlpatterns = [
-    path('', views.index),
-    path('api/', include(router.urls)),
-    path(r'docs/', include_docs_urls(title='Public map API')),
+    path('', index_leaflet),
+    path('2gis', index_gis),
+    path(r'api/vehicles/', VehicleList.as_view(), name="vehicle_list")
 ]
+
+# path(r'api/vehicles.getAll')
+# path(r'api/vehicles.getNumber)
+# path(r'api/vehicles.getRoute)
+# path(r'api/routes)
+# path(r'api/routes)
+# path(r'api/stops.getAll)

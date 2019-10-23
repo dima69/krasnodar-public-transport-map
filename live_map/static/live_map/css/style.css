@@ -1,0 +1,63 @@
+html, body, #map {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#mapid {
+    height: 100%;
+}
+
+.vehicle-tram-icon {
+    background-color: #ff9236;
+    /* border-radius: 3px; */
+    /* color: aliceblue; */
+    /* border: 2px solid #ca6a1b; */
+}
+
+.vehicle-trolley-icon {
+    background-color: #36cf00;
+    /* border-radius: 3px; */
+    /* color: aliceblue; */
+    /* border: 2px solid #227a01; */
+}
+
+.vehicle-bus-icon {
+    background-color: #5055fb;
+    color: white;
+    /* border-radius: 3px; */
+    /* border: 2px solid #373cd1; */
+}
+
+.leaflet-fade-anim .leaflet-tile,
+.leaflet-zoom-anim .leaflet-zoom-animated {
+    will-change: auto !important;
+}
+
+.vehicle-bus-icon {
+    -webkit-animation: mymove 1s;
+    animation: fadein .3s;
+}
+
+.vehicle-trolley-icon {
+    animation: fadein .3s;
+}
+
+.vehicle-tram-icon {
+    animation: fadein .3s;
+}
+
+@keyframes mymove {
+  from {top: -1px;}
+  to {top: 0px;}
+}
+
+@keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
