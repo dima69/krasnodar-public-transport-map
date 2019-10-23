@@ -4,3 +4,5 @@ __pycache__/
 krd_public_map/__pycache__/
 live_map/__pycache__/
 ngrok.exe
+.jshintrc
+.vscode/
